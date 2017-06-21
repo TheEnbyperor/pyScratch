@@ -10,9 +10,8 @@ class Sprite(pygame.sprite.Sprite):
 
         self._orig_image = world.resources.get_image(image)
         self.image = self._orig_image
-        self.rect = self._image.get_rect()
-        self.rect.x = 250
-        self.rect.y = 200
+        self.rect = self.image.get_rect()
+        self.go_to(250, 200)
         self._ddx = 0.0
         self._ddy = 0.0
         self._angle = 0
@@ -28,8 +27,8 @@ class Sprite(pygame.sprite.Sprite):
             self.rect.x = self._world.size[0]
         if self.rect.y > self._world.size[1]:
             self.rect.y = self._world.size[1]
-        self._image = pygame.transform.rotate(self._orig_image, self._angle)
-        self.rect = self._image.get_rect(center=self.rect.center)
+        self.image = pygame.transform.rotate(self._orig_image, self._angle)
+        self.rect = self.image.get_rect(center=self.rect.center)
 
     def draw(self):
         if not self._hidden:
@@ -52,20 +51,28 @@ class Sprite(pygame.sprite.Sprite):
         self._angle = degrees
 
     def go_to(self, x, y):
-        self.rect.x = x
-        self.rect.y = y
+        self.set_x(x)
+        self.set_y(y)
+
+    def go_to_mouse(self):
+        x, y = pygame.mouse.get_pos()
+        self.go_to(x, y)
 
     def set_x(self, x):
-        self.rect.x = x
+        self.rect.x = x - (self.image.get_width() / 2)
 
     def change_x_by(self, x):
         self.rect.x += x
 
     def set_y(self, y):
-        self.rect.x = y
+        self.rect.y = y - (self.image.get_height() / 2)
 
     def change_y_by(self, y):
         self.rect.y += y
+
+    def angle_beetween(self, a, b):
+        math.atan2(a[1], a[0])
+        math.atan2(b[1], b[0])
 
     @property
     def x_pos(self):

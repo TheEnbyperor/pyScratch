@@ -18,8 +18,6 @@ class World:
     def run(self):
         done = False
 
-        print(self.callbacks)
-
         for thread in self.callbacks["start"]:
             thread.start()
 

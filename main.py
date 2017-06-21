@@ -8,9 +8,8 @@ cat = pyscratch.get_scratchcat(world)
 
 @pyscratch.on_start(world)
 def main():
-    cat.rotate(45)
     while True:
-        cat.move(10)
-        time.sleep(0.2)
+        cat.go_to_mouse()
+        time.sleep(0.1)
 
 world.run()
