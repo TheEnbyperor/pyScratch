@@ -12,6 +12,12 @@ def get_scratchcat(world):
     return s
 
 
+def get_sprite(world, img):
+    s = sprite.Sprite(img, world)
+    world.inject_sprite(s)
+    return s
+
+
 def on_start(world):
     def bind(func):
         world.bind_on_start(func)
