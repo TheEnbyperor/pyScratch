@@ -4,6 +4,14 @@ import math
 GRAD = math.pi / 180
 
 
+def angle_beetween(a, b):
+    dx = b[0] - a[0]
+    dy = b[1] - a[0]
+    rads = math.atan2(-dy, dx)
+    rads %= 2 * math.pi
+    return math.degrees(rads)
+
+
 class Sprite(pygame.sprite.Sprite):
     def __init__(self, image, world):
         super().__init__()
@@ -50,6 +58,10 @@ class Sprite(pygame.sprite.Sprite):
     def point_in_direction(self, degrees):
         self._angle = degrees
 
+    def point_to_mouse(self):
+        angle = angle_beetween((self.x_pos, self.y_pos), pygame.mouse.get_pos())
+        self.point_in_direction(angle)
+
     def go_to(self, x, y):
         self.set_x(x)
         self.set_y(y)
@@ -69,10 +81,6 @@ class Sprite(pygame.sprite.Sprite):
 
     def change_y_by(self, y):
         self.rect.y += y
-
-    def angle_beetween(self, a, b):
-        math.atan2(a[1], a[0])
-        math.atan2(b[1], b[0])
 
     @property
     def x_pos(self):
