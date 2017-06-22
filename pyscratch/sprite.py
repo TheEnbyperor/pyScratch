@@ -154,3 +154,19 @@ class Sprite(pygame.sprite.Sprite):
     @property
     def costume(self):
         return self._costume
+
+    #########################
+    # Scratch sound section #
+    #########################
+
+    def play_sound(self, sound):
+        self._world.resources.play_sound(sound)
+
+    def play_sound_until_done(self, sound):
+        self._world.resources.play_sound(sound)
+        if pygame.mixer.get_busy():
+            pass
+
+    def stop_all_sounds(self, sound):
+        pygame.mixer.stop()
+
