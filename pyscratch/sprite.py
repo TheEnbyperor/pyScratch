@@ -20,6 +20,7 @@ class Sprite(pygame.sprite.Sprite):
         self.image = self._orig_image
         self.rect = self.image.get_rect()
         self.go_to(250, 200)
+        self.layer = 0
         self._ddx = 0.0
         self._ddy = 0.0
         self._angle = 0
@@ -114,3 +115,9 @@ class Sprite(pygame.sprite.Sprite):
 
     def change_scale_by(self, scale):
         self._scale += scale/100
+
+    def go_to_top(self):
+        self._world.sprites.move_to_front(self)
+
+    def go_to_layer(self, layer):
+        self._world.sprites.change_layer(self, layer)

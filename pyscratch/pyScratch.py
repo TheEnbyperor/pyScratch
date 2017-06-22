@@ -13,7 +13,7 @@ class World:
         self.size = size
         self.fps = fps
         self.callbacks = {}
-        self.sprites = pygame.sprite.Group()
+        self.sprites = pygame.sprite.LayeredUpdates()
 
     def run(self):
         done = False
