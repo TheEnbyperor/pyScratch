@@ -13,9 +13,18 @@ def angle_beetween(a, b):
 
 
 class Sprite(pygame.sprite.Sprite):
-    def __init__(self, image, world):
+    def __init__(self, costumes, world):
         super().__init__()
-
+        if isinstance(costumes, list):
+            try:
+                image = costumes[0]
+                self._costumes = costumes
+            except IndexError:
+                raise IndexError("Need at least one costume")
+        else:
+            image = costumes
+            self._costumes = [image]
+        self._costume = 0
         self._orig_image = world.resources.get_image(image)
         self.image = self._orig_image
         self.rect = self.image.get_rect()
@@ -121,3 +130,27 @@ class Sprite(pygame.sprite.Sprite):
 
     def go_to_layer(self, layer):
         self._world.sprites.change_layer(self, layer)
+
+    def next_costume(self):
+        self._costume += 1
+        if self._costume == len(self._costumes):
+            self._costume = 0
+        self._update_costume()
+
+    def switch_to_costume(self, costume):
+        try:
+            self._costume = costume
+        except IndexError:
+            raise IndexError("Costume not found")
+        self._update_costume()
+
+    def _update_costume(self):
+        self._orig_image = self._world.resources.get_image(self._costumes[self._costume])
+
+    @property
+    def size(self):
+        return self._scale
+
+    @property
+    def costume(self):
+        return self._costume
