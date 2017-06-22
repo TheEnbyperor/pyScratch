@@ -23,6 +23,7 @@ class Sprite(pygame.sprite.Sprite):
         self._ddx = 0.0
         self._ddy = 0.0
         self._angle = 0
+        self._scale = 1
         self._world = world
         self._hidden = False
 
@@ -35,7 +36,11 @@ class Sprite(pygame.sprite.Sprite):
             self.rect.x = self._world.size[0]
         if self.rect.y > self._world.size[1]:
             self.rect.y = self._world.size[1]
-        self.image = pygame.transform.rotate(self._orig_image, self._angle)
+        width, height = self._orig_image.get_size()
+        image = pygame.transform.scale(self._orig_image,
+                                       (int(width * self._scale),
+                                        int(height * self._scale)))
+        self.image = pygame.transform.rotate(image, self._angle)
         self.rect = self.image.get_rect(center=self.rect.center)
 
     def draw(self):
@@ -103,3 +108,9 @@ class Sprite(pygame.sprite.Sprite):
 
     def hide(self):
         self._hidden = True
+
+    def set_scale_to(self, scale):
+        self._scale = scale/100
+
+    def change_scale_by(self, scale):
+        self._scale += scale/100
