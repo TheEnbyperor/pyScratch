@@ -77,6 +77,11 @@ class Sprite(pygame.sprite.Sprite):
         angle = angle_beetween((self.x_pos, self.y_pos), pygame.mouse.get_pos())
         self.point_in_direction(angle)
 
+    def point_to_sprite(self, sprite):
+        angle = angle_beetween((self.x_pos, self.y_pos),
+                               (sprite.x_pos, sprite.y_pos))
+        self.point_in_direction(angle)
+
     def go_to(self, x, y):
         self.set_x(x)
         self.set_y(y)
@@ -84,6 +89,9 @@ class Sprite(pygame.sprite.Sprite):
     def go_to_mouse(self):
         x, y = pygame.mouse.get_pos()
         self.go_to(x, y)
+
+    def go_to_sprite(self, sprite):
+        self.go_to(sprite.x_pos, sprite.y_pos)
 
     def set_x(self, x):
         self.rect.x = x - (self.image.get_width() / 2)
@@ -181,3 +189,28 @@ class Sprite(pygame.sprite.Sprite):
     @property
     def volume(self):
         return self._world.resources.volume
+
+    ###########################
+    # Scratch sensing section #
+    ###########################
+
+    def distance_to_mouse(self):
+        x, y = pygame.mouse.get_pos()
+        return math.hypot(self.x_pos-x, self.y_pos-y)
+
+    def distance_to_sprite(self, sprite):
+        return math.hypot(self.x_pos-sprite.x_pos, self.y_pos-sprite.y_pos)
+
+    @property
+    def mouse_x(self):
+        x, _ = pygame.mouse.get_pos()
+        return x
+
+    @property
+    def mouse_y(self):
+        _, y = pygame.mouse.get_pos()
+        return y
+
+    @property
+    def mouse_down(self):
+        return pygame.mouse.get_pressed()
