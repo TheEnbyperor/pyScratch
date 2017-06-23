@@ -93,6 +93,8 @@ class Sprite(pygame.sprite.Sprite):
     def go_to_sprite(self, sprite):
         self.go_to(sprite.x_pos, sprite.y_pos)
 
+    # TODO: Glide to x,y
+
     def set_x(self, x):
         self.rect.x = x - (self.image.get_width() / 2)
 
@@ -104,6 +106,8 @@ class Sprite(pygame.sprite.Sprite):
 
     def change_y_by(self, y):
         self.rect.y += y
+
+    # TODO: Rotation style
 
     @property
     def x_pos(self):
@@ -120,6 +124,9 @@ class Sprite(pygame.sprite.Sprite):
     #########################
     # Scratch looks section #
     #########################
+
+    # TODO: Say
+    # TODO: Think
 
     def show(self):
         self._hidden = False
@@ -155,6 +162,8 @@ class Sprite(pygame.sprite.Sprite):
     def _update_costume(self):
         self._orig_image = self._world.resources.get_image(self._costumes[self._costume])
 
+    # TODO: Backdrop
+
     @property
     def size(self):
         return self._scale
@@ -163,36 +172,20 @@ class Sprite(pygame.sprite.Sprite):
     def costume(self):
         return self._costume
 
-    #########################
-    # Scratch sound section #
-    #########################
+    #######################
+    # Scratch pen section #
+    #######################
 
-    def play_sound(self, sound):
-        self._world.resources.play_sound(sound)
-
-    def play_sound_until_done(self, sound):
-        self._world.resources.play_sound(sound)
-        if pygame.mixer.get_busy():
-            pass
-
-    def stop_all_sounds(self):
-        pygame.mixer.stop()
-
-    def set_volume(self, volume):
-        self._world.resources.set_volume(volume/100)
-
-    def change_volume_by(self, volume):
-        old_vol = self.volume
-        new_vol = old_vol + volume/100
-        self._world.resources.set_volume(new_vol)
-
-    @property
-    def volume(self):
-        return self._world.resources.volume
+    # TODO: Implement
 
     ###########################
     # Scratch sensing section #
     ###########################
+
+    # TODO: Touching thing
+    # TODO: Touching colour
+    # TODO: Colour touching colour
+
 
     def distance_to_mouse(self):
         x, y = pygame.mouse.get_pos()
@@ -200,17 +193,3 @@ class Sprite(pygame.sprite.Sprite):
 
     def distance_to_sprite(self, sprite):
         return math.hypot(self.x_pos-sprite.x_pos, self.y_pos-sprite.y_pos)
-
-    @property
-    def mouse_x(self):
-        x, _ = pygame.mouse.get_pos()
-        return x
-
-    @property
-    def mouse_y(self):
-        _, y = pygame.mouse.get_pos()
-        return y
-
-    @property
-    def mouse_down(self):
-        return pygame.mouse.get_pressed()
