@@ -186,7 +186,6 @@ class Sprite(pygame.sprite.Sprite):
     # TODO: Touching colour
     # TODO: Colour touching colour
 
-
     def distance_to_mouse(self):
         x, y = pygame.mouse.get_pos()
         return math.hypot(self.x_pos-x, self.y_pos-y)

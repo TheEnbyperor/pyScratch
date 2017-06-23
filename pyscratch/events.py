@@ -6,14 +6,6 @@ class Events:
         self._world = world
         self._sensing = sensing
         self._topics = {}
-        self._timer = []
-
-    def _timer_thread(self):
-        while True:
-            for func in self._timer:
-                if func["timer"] > self._sensing.timer and func["called"] is False:
-                    func()
-                    func["called"] = True
 
     def on_start(self, func):
         self._world.bind_on_start(func)
@@ -21,7 +13,7 @@ class Events:
 
     def on_timer_more_than(self, timer):
         def bind(func):
-            self._timer.append({
+            self._sensing.add_timer_event({
                 "func": func,
                 "time": timer,
                 "called": False
