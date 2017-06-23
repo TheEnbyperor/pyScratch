@@ -7,17 +7,16 @@ Example:
 import pyscratch
 import time
 
-world = pyscratch.init_world()
-
-cat = pyscratch.get_scratchcat(world)
+cat = pyscratch.get_scratchcat()
 
 
-@pyscratch.on_start(world)
+@pyscratch.on_start
 def main():
-    cat.rotate(45)
+    cat.set_scale_to(125)
     while True:
-        cat.move(10)
-        time.sleep(0.2)
+        cat.point_to_mouse()
+        time.sleep(0.1)
 
-world.run()
+pyscratch.run()
+
 ```
