@@ -27,7 +27,7 @@ class Sensing:
     def mouse_down(self):
         return pygame.mouse.get_pressed()
 
-    def reset_time(self):
+    def reset_timer(self):
         self._time = time.time()
 
     @property

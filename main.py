@@ -4,7 +4,7 @@ import time
 cat = pyscratch.get_scratchcat()
 
 
-@pyscratch.on_start
+@pyscratch.events.on_start
 def main():
     cat.set_scale_to(125)
     pyscratch.sound.play_sound("meow.wav")
