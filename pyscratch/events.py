@@ -11,6 +11,9 @@ class Events:
         self._world.bind_on_start(func)
         return func
 
+    # TODO: On key press
+    # TODO: On clicked stage/sprite
+
     def on_timer_more_than(self, timer):
         def bind(func):
             self._sensing.add_timer_event({

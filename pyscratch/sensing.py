@@ -27,6 +27,9 @@ class Sensing:
     ###########################
 
     # TODO: Ask question
+    # TODO: Key pressed
+    # TODO: Time
+    # TODO: Days since 2000
 
     @property
     def mouse_x(self):

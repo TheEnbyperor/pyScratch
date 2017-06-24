@@ -20,6 +20,11 @@ class Sound:
     def stop_all_sounds(self):
         pygame.mixer.stop()
 
+    # TODO: Drum
+    # TODO: Note
+    # TODO: Instrument
+    # TODO: Tempo
+
     def set_volume(self, volume):
         self._world.resources.set_volume(volume/100)
 

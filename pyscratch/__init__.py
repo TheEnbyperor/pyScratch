@@ -8,6 +8,7 @@ world = pyscratch.pyScratch.World((500, 400), 60)
 sound = pyscratch.sound.Sound(world)
 sensing = pyscratch.sensing.Sensing(world)
 events = pyscratch.events.Events(world)
+# TODO: Stage looks
 
 
 def get_scratchcat():
