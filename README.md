@@ -20,4 +20,4 @@ def main():
 pyscratch.run()
 
 ```
-![Example running](https://raw.githubusercontent.com/benjaminmisell/pyScratch/master/scratchcat.svg)
+![Example running](https://raw.githubusercontent.com/benjaminmisell/pyScratch/master/readme-img.png)
